@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/imdb
+    username : root
+    password : Reshma@123
+    jpa:
+      hibernate.ddl-auto: update
+      generate-ddl: true
+      show-sql: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
