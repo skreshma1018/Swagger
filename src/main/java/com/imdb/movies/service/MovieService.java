@@ -1,14 +1,14 @@
 package com.imdb.movies.service;
 
-import com.imdb.movies.controller.MovieController;
 import com.imdb.movies.entity.Movies;
+import com.imdb.movies.exception.ServiceException;
 import com.imdb.movies.repository.MovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.rmi.ServerError;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,9 +27,11 @@ public class MovieService {
             logger.info("fetched success");
         } catch(Exception e){
             logger.info("getAllMovie error ",e);
-
+            throw new ServiceException("Error While fetching movies",HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return moviesList;
     }
+
+
 
 }
