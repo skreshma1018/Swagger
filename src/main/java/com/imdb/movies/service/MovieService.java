@@ -1,19 +1,35 @@
 package com.imdb.movies.service;
 
+import com.imdb.movies.controller.MovieController;
 import com.imdb.movies.entity.Movies;
 import com.imdb.movies.repository.MovieRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.rmi.ServerError;
+import java.util.Collections;
 import java.util.List;
 
 @Service
 public class MovieService {
+
+    Logger logger= LoggerFactory.getLogger(MovieService.class);
+
     @Autowired
     private MovieRepository movieRepository;
 
     public List<Movies> getAllMovie(){
-        return  movieRepository.findAll();
+        List<Movies> moviesList = Collections.emptyList();
+        try{
+            moviesList= movieRepository.findAll();
+            logger.info("fetched success");
+        } catch(Exception e){
+            logger.info("getAllMovie error ",e);
+
+        }
+        return moviesList;
     }
 
 }
